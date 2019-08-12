@@ -1,7 +1,7 @@
 {
-    "name": "com.hidenami-i.UnityExtensions",
+    "name": "com.hidenami-i.unityextensions",
     "displayName": "UnityExtensions",
-    "description": ".net and unity extensions classes",
+    "description": ".net and unity extensions classes.",
     "version": "1.0.0",
     "unity": "2018.1",
     "license": "MIT",
