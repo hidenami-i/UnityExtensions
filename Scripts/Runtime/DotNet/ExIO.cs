@@ -12,7 +12,7 @@ namespace UnityExtensions
 	/// IO Extensions
 	/// ref https://docs.microsoft.com/ja-jp/dotnet/api/system.io?view=netframework-4.7.2
 	/// </summary>
-	public static class IOUtility
+	public static class ExIO
 	{
 		static readonly byte[] EmptyBytes = new byte[0];
 
@@ -268,7 +268,7 @@ namespace UnityExtensions
 		/// Safe file delete.
 		/// </summary>
 		/// <param name="filePath"></param>
-		public static void SafeDelete(string filePath) {
+		public static void DeleteFile(string filePath) {
 			if (!File.Exists(filePath)) {
 				ExDebug.LogError($"Not exists {filePath}");
 				return;
@@ -281,7 +281,7 @@ namespace UnityExtensions
 		/// Safe directory delete.
 		/// </summary>
 		/// <param name="directoryPath"></param>
-		public static void SafeDeleteDirectory(string directoryPath) {
+		public static void DeleteDirectory(string directoryPath) {
 			if (!Directory.Exists(directoryPath)) {
 				ExDebug.LogError($"Not exists {directoryPath}");
 				return;
@@ -302,12 +302,12 @@ namespace UnityExtensions
 			}
 
 			foreach (string path in filePaths) {
-				SafeDelete(path);
+				DeleteFile(path);
 			}
 
 			IEnumerable<string> direcToryPaths = GetAllDirectories(rootDirectoryPath).Reverse();
 			foreach (string path in direcToryPaths) {
-				SafeDeleteDirectory(path);
+				DeleteDirectory(path);
 			}
 		}
 
@@ -323,7 +323,7 @@ namespace UnityExtensions
 
 			CreateDirectoryNotExist(Path.GetDirectoryName(newFilePath));
 			File.Move(filePath, newFilePath);
-			SafeDelete(filePath);
+			DeleteFile(filePath);
 		}
 
 		public static void DirectoryCopy(string sourcePath, string destinationPath) {
@@ -357,10 +357,6 @@ namespace UnityExtensions
 			}
 
 			return sizeInBytes;
-		}
-
-		public static string CombinePaths(params string[] paths) {
-			return paths.Aggregate(Path.Combine);
 		}
 
 		public static void RemovePathAndMeta(string path, bool removeEmptyParent = false) {
