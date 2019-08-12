@@ -295,8 +295,8 @@ namespace UnityExtensions
 				builder.AppendLine($"[ScreenCurrentResolution] {Screen.currentResolution.width}×{Screen.currentResolution.height}");
 
 				builder.AppendLine("[SupportsTextureFormat]");
-				foreach (TextureFormat textureFormat in ExEnumeraion.ToList<TextureFormat>()) {
-					builder.AppendLine($"[{ExEnumeraion.GetName(textureFormat)}]" + SystemInfo.SupportsTextureFormat(textureFormat));
+				foreach (TextureFormat textureFormat in ExEnum.ToList<TextureFormat>()) {
+					builder.AppendLine($"[{ExEnum.GetName(textureFormat)}]" + SystemInfo.SupportsTextureFormat(textureFormat));
 				}
 
 				return builder.ToString();

@@ -72,7 +72,7 @@ namespace UnityExtensions
 			Dictionary<string, object> data = ToDictionary(obj);
 			object o;
 			if (!data.TryGetValue(key, out o)) {
-				ExDebug.LogWarning($"key not found : {key}");
+				ExDebug.LogWarning($"[{key}] key not found.");
 				return new Dictionary<string, object>();
 			}
 
@@ -90,7 +90,7 @@ namespace UnityExtensions
 			Dictionary<string, object> data = ToDictionary(obj);
 			object o;
 			if (!data.TryGetValue(key, out o)) {
-				ExDebug.LogWarning($"key not found : {key}");
+				ExDebug.LogWarning($"[{key}] key not found.");
 				return new List<object>();
 			}
 
@@ -109,7 +109,7 @@ namespace UnityExtensions
 			Dictionary<string, object> data = ToDictionary(obj);
 			object o;
 			if (!data.TryGetValue(key, out o)) {
-				ExDebug.LogWarning($"key not found : {key}");
+				ExDebug.LogWarning($"[{key}] key not found.");
 				return new List<T>();
 			}
 

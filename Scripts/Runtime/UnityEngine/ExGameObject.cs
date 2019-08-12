@@ -23,7 +23,7 @@ namespace UnityExtensions
 		public static GameObject SafeFind(string name) {
 			GameObject go = GameObject.Find(name);
 			if (!go.IsNull()) return go;
-			ExDebug.LogWarning(("not exist gameobject : " + name));
+			ExDebug.LogWarning("not exist gameobject : " + name);
 			return null;
 		}
 
@@ -31,7 +31,7 @@ namespace UnityExtensions
 		public static GameObject SafeFindGameObjectWithTag(string tag) {
 			GameObject go = GameObject.FindGameObjectWithTag(tag);
 			if (!go.IsNull()) return go;
-			ExDebug.LogWarning(("not exist gameobject : " + tag));
+			ExDebug.LogWarning("not exist gameobject : " + tag);
 			return null;
 
 		}
@@ -158,8 +158,7 @@ namespace UnityExtensions
 			var ns = UnityEngine.Object.FindObjectsOfType<Component>();
 			for (var index = 0; index < ns.Length; index++) {
 				var n = ns[index];
-				var component = n as T;
-				if (component != null) {
+				if (n is T) {
 					return n;
 				}
 			}
@@ -173,8 +172,7 @@ namespace UnityExtensions
 			var ns = UnityEngine.Object.FindObjectsOfType<Component>();
 			for (var index = 0; index < ns.Length; index++) {
 				var n = ns[index];
-				var component = n as T;
-				if (component != null) {
+				if (n is T component) {
 					list.Add(component);
 				}
 			}
@@ -188,8 +186,7 @@ namespace UnityExtensions
 			var ns = UnityEngine.Object.FindObjectsOfType<Component>();
 			for (var index = 0; index < ns.Length; index++) {
 				var n = ns[index];
-				var component = n as T;
-				if (component != null) {
+				if (n is T component) {
 					list.Add(n);
 				}
 			}

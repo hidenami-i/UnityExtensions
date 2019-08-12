@@ -10,7 +10,7 @@ namespace UnityExtensions
 		/// <param name="list"></param>
 		/// <typeparam name="T"></typeparam>
 		/// <typeparam name="K"></typeparam>
-		public static void SafeClear<T, K>(this Dictionary<T, K> dictionary) {
+		public static void SafeClear<T, K>(this IDictionary<T, K> dictionary) {
 			if (dictionary.IsNullOrEmpty()) {
 				return;
 			}

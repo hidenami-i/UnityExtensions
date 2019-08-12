@@ -1,9 +1,15 @@
 using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 namespace UnityExtensions.Editor
 {
 	public static class ExUnityEditor
 	{
+		public static bool IsPlayingUnityEditor() {
+			return EditorApplication.isPlaying || Application.isPlaying || EditorApplication.isCompiling;
+		}
+		
 		public static void SetUsing(this StringBuilder builder, params string[] strs) {
 			foreach (string str in strs) {
 				builder.AppendLine($"using {str};");

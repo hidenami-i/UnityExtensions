@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace UnityExtensions
 {
-	public static class ExEnumeraion
+	public static class ExEnum
 	{
 		/// <summary>
 		/// Cast the enumerated type to the IEnumerable type and return it.

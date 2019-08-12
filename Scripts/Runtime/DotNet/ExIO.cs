@@ -92,15 +92,15 @@ namespace UnityExtensions
 				return File.ReadAllText(filePath, Encoding.UTF8);
 			}
 			catch (DirectoryNotFoundException e) {
-				Debug.LogWarning($"FilePath:{filePath}\nDirectoryNotFoundException:{e.StackTrace}");
+				ExDebug.LogWarning($"FilePath:{filePath}\nDirectoryNotFoundException:{e.StackTrace}");
 				return "";
 			}
 			catch (FileNotFoundException e) {
-				Debug.LogWarning($"FilePath:{filePath}\nFileNotFoundException:{e.StackTrace}");
+				ExDebug.LogWarning($"FilePath:{filePath}\nFileNotFoundException:{e.StackTrace}");
 				return "";
 			}
 			catch (Exception e) {
-				Debug.LogError($"FilePath:{filePath}\nException:{e.StackTrace}");
+				ExDebug.LogError($"FilePath:{filePath}\nException:{e.StackTrace}");
 				throw;
 			}
 		}
@@ -126,15 +126,15 @@ namespace UnityExtensions
 				return File.ReadAllBytes(filePath);
 			}
 			catch (DirectoryNotFoundException e) {
-				Debug.LogWarning($"FilePath:{filePath}\nDirectoryNotFoundException:{e.StackTrace}");
+				ExDebug.LogWarning($"FilePath:{filePath}\nDirectoryNotFoundException:{e.StackTrace}");
 				return EmptyBytes;
 			}
 			catch (FileNotFoundException e) {
-				Debug.LogWarning($"FilePath:{filePath}\nFileNotFoundException:{e.StackTrace}");
+				ExDebug.LogWarning($"FilePath:{filePath}\nFileNotFoundException:{e.StackTrace}");
 				return EmptyBytes;
 			}
 			catch (Exception e) {
-				Debug.LogError($"FilePath:{filePath}\nException:{e.StackTrace}");
+				ExDebug.LogError($"FilePath:{filePath}\nException:{e.StackTrace}");
 				throw;
 			}
 		}
@@ -270,7 +270,7 @@ namespace UnityExtensions
 		/// <param name="filePath"></param>
 		public static void SafeDelete(string filePath) {
 			if (!File.Exists(filePath)) {
-				Debug.LogError($"Not exists {filePath}");
+				ExDebug.LogError($"Not exists {filePath}");
 				return;
 			}
 
@@ -283,7 +283,7 @@ namespace UnityExtensions
 		/// <param name="directoryPath"></param>
 		public static void SafeDeleteDirectory(string directoryPath) {
 			if (!Directory.Exists(directoryPath)) {
-				Debug.LogError($"Not exists {directoryPath}");
+				ExDebug.LogError($"Not exists {directoryPath}");
 				return;
 			}
 
