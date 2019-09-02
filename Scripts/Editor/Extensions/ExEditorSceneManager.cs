@@ -31,7 +31,7 @@ namespace UnityExtensions.Editor
 
 		public static void SetActiveSelectionObjectScene() {
 			var targetObject = Selection.objects[0] as GameObject;
-			var sceneList = EditorSceneManager.GetAllScenes().ToList();
+			var sceneList = GetAllScenes().ToList();
 			foreach (var scene in sceneList) {
 				foreach (GameObject root in scene.GetRootGameObjects()) {
 					Transform[] gameObjects = root.GetComponentsInChildren<Transform>(true);
@@ -45,6 +45,21 @@ namespace UnityExtensions.Editor
 			}
 
 			RESULT: ;
+		}
+
+		public static List<Scene> GetAllScenes() {
+			List<Scene> sceneList = new List<Scene>();
+			int count = EditorSceneManager.sceneCount;
+
+			if (count <= 0) {
+				return sceneList;
+			}
+			
+			for (int i = 0; i < EditorSceneManager.sceneCount; i++) {
+				sceneList.Add(EditorSceneManager.GetSceneAt(i));
+			}
+
+			return sceneList;
 		}
 	}
 }
