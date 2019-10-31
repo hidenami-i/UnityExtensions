@@ -23,20 +23,48 @@ namespace UnityExtensions
 			string hex = !color.HasValue ? DefaultHexColor : ColorUtility.ToHtmlStringRGB(color.Value);
             Log(step++, title, null, color);
 		}
-
+		
 		/// <summary>
 		/// Shows a log.
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="color"></param>
-		/// <param name="message"></param>
+		/// <param name="context"></param>
+		/// <typeparam name="T"></typeparam>
 		#if UNITY_EDITOR || !DEVELOPMENT_BUILD
 		[Conditional("UNITY_EDITOR")]
 		#endif
-		public static void Log<T>(T value, string title = null, Object context = null, Color? color = null) {
+		public static void Log<T>(T value, Object context = null) {
+			Log(value, "", context, null);
+		}
+		
+		/// <summary>
+		/// Shows a log.
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="title"></param>
+		/// <param name="context"></param>
+		#if UNITY_EDITOR || !DEVELOPMENT_BUILD
+		[Conditional("UNITY_EDITOR")]
+		#endif
+		public static void Log(string message, string title, Object context = null) {
+			Log(message, title, context, null);
+		}
+		
+		/// <summary>
+		/// Shows a log.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="title"></param>
+		/// <param name="context"></param>
+		/// <param name="color"></param>
+		/// <typeparam name="T"></typeparam>
+		#if UNITY_EDITOR || !DEVELOPMENT_BUILD
+		[Conditional("UNITY_EDITOR")]
+		#endif
+		public static void Log<T>(T value, string title, Object context, Color? color = null) {
 			string hex = !color.HasValue ? DefaultHexColor : ColorUtility.ToHtmlStringRGB(color.Value);
-            string msg = string.IsNullOrEmpty(title) ? string.Empty : title + " : ";
-			UnityEngine.Debug.Log($"<color=#{hex}>{msg}{value}</color>", context);
+            title = string.IsNullOrEmpty(title) ? string.Empty : title + " : ";
+			UnityEngine.Debug.Log($"<color=#{hex}>{title}{value}</color>", context);
 		}
 
 		/// <summary>
@@ -170,7 +198,7 @@ namespace UnityExtensions
 		/// <param name="_vector">Vector.</param>
 		public static void LogVector2(Vector2 vector) {
             string msg = "(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ")";
-			Log(msg, "", null);
+			Log(msg, "", null, null);
 		}
 
 		/// <summary>
@@ -179,7 +207,7 @@ namespace UnityExtensions
 		/// <param name="_vector">Vector.</param>
 		public static void LogVector3(Vector3 vector) {
             string msg = "(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ", " + vector.z.ToString("0.0#######") + ")";
-            Log(msg, "", null);
+            Log(msg, "", null, null);
 		}
 
 		/// <summary>
@@ -252,7 +280,7 @@ namespace UnityExtensions
 		[Conditional("UNITY_EDITOR")]
 		#endif
 		public static void LogMonoUsedSize() {
-			Log("mono used size", ExString.ToHumanReadableSize(Profiler.GetMonoUsedSizeLong()));
+			Log("mono used size", ExString.ToHumanReadableSize(Profiler.GetMonoUsedSizeLong()), null, null);
 		}
 
 		/// <summary>
