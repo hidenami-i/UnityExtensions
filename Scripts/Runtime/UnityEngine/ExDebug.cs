@@ -19,9 +19,9 @@ namespace UnityExtensions
 		#if UNITY_EDITOR || !DEVELOPMENT_BUILD
 		[Conditional("UNITY_EDITOR")]
 		#endif
-		public static void LogStep(string message = null, Color? color = null) {
+		public static void LogStep(string title = null, Color? color = null) {
 			string hex = !color.HasValue ? DefaultHexColor : ColorUtility.ToHtmlStringRGB(color.Value);
-			UnityEngine.Debug.LogFormat("<color=#{0}>{1}{2}</color>", hex, string.IsNullOrEmpty(message) ? string.Empty : message + " : ", step++);
+			UnityEngine.Debug.LogFormat("<color=#{0}>{1}{2}</color>", hex, string.IsNullOrEmpty(title) ? string.Empty : title + " : ", step++);
 		}
 
 		/// <summary>
@@ -33,9 +33,10 @@ namespace UnityExtensions
 		#if UNITY_EDITOR || !DEVELOPMENT_BUILD
 		[Conditional("UNITY_EDITOR")]
 		#endif
-		public static void Log<T>(T value, string message = null, Color? color = null) {
+		public static void Log<T>(T value, string title = null, Object context = null, Color? color = null) {
 			string hex = !color.HasValue ? DefaultHexColor : ColorUtility.ToHtmlStringRGB(color.Value);
-			UnityEngine.Debug.LogFormat("<color=#{0}>{1}{2}</color>", hex, string.IsNullOrEmpty(message) ? string.Empty : message + " : ", value);
+            string msg = string.IsNullOrEmpty(title) ? string.Empty : title + " : ";
+			UnityEngine.Debug.Log($"<color=#{hex}>{msg}{value}</color>", context);
 		}
 
 		/// <summary>
@@ -168,7 +169,8 @@ namespace UnityExtensions
 		/// </summary>
 		/// <param name="_vector">Vector.</param>
 		public static void LogVector2(Vector2 vector) {
-			Log("(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ")");
+            string msg = "(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ")";
+			Log(msg, "", null);
 		}
 
 		/// <summary>
@@ -176,7 +178,8 @@ namespace UnityExtensions
 		/// </summary>
 		/// <param name="_vector">Vector.</param>
 		public static void LogVector3(Vector3 vector) {
-			Log("(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ", " + vector.z.ToString("0.0#######") + ")");
+            string msg = "(" + vector.x.ToString("0.0#######") + ", " + vector.y.ToString("0.0#######") + ", " + vector.z.ToString("0.0#######") + ")";
+            Log(msg, "", null);
 		}
 
 		/// <summary>
