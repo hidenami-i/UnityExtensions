@@ -21,7 +21,7 @@ namespace UnityExtensions
 		#endif
 		public static void LogStep(string title = null, Color? color = null) {
 			string hex = !color.HasValue ? DefaultHexColor : ColorUtility.ToHtmlStringRGB(color.Value);
-			UnityEngine.Debug.LogFormat("<color=#{0}>{1}{2}</color>", hex, string.IsNullOrEmpty(title) ? string.Empty : title + " : ", step++);
+            Log(step++, title, null, color);
 		}
 
 		/// <summary>
